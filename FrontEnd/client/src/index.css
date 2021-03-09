@@ -1,9 +1,10 @@
 :root {
-    --blanco: #ffffff;
-    --gris1: #edf2f6;
-    --gris2: #2f3848;
-    --gris3: #1a202d;
-    --negro: #000000;
+    --white: #ffffff;
+    --grey1: #edf2f6;
+    --grey2: #2f3848;
+    --grey3: #1a202d;
+    --black: #000000;
+    --blue: #233460;
     --headingFont:'Raleway', sans-serif;
     --textFont:  'Roboto', sans-serif;
   }
@@ -17,7 +18,7 @@
   }
   body {
     min-height: 100%;
-    background-color: var(--gris1);
+    background-color: var(--grey1);
     font-size: 16px; 
     font-size: 1.6rem;
     font-family: var(--textFont);
@@ -29,7 +30,7 @@
     font-weight: 900;
     margin: 0 0 4rem 0;
     text-align: center;
-    color: var(--gris2);
+    color: var(--grey2);
   }
   h1 span {
     font-weight: 400;
@@ -47,7 +48,7 @@
   }
   a {
     text-decoration: none;
-    color: var(--gris2);
+    color: var(--grey2);
   }
   
   /** BOTONES **/
@@ -65,14 +66,14 @@
     cursor: pointer;
   }
   .btn-primary {
-    background-color: var(--gris2);
-    color: var(--blanco);
+    background-color: var(--grey2);
+    color: var(--white);
   }
   .btn-primary:hover {
-    background: var(--gris3);
+    background: var(--grey3);
   }
   .btn-secundary {
-    background-color: var(--gris1);
+    background-color: var(--grey1);
   }
   .btn-block {
     display: block;
@@ -83,7 +84,7 @@
     width: 50%;
   }
   .btn-submit:hover {
-    background-color: var(--gris2);
+    background-color: var(--grey2);
   }
   .btn-blank {
     margin: 0;
@@ -93,7 +94,7 @@
   }
 
   .btn-delete {
-    background-color: var(--blanco);
+    background-color: var(--white);
   }
   
   @media (min-width: 768px) {
@@ -103,7 +104,7 @@
     }
   
     aside {
-        background-color: var(--blanco);
+        background-color: var(--white);
         flex: 0 0 300px;
     }
     .main-section {
@@ -122,12 +123,12 @@
     margin-top: 6rem;
   }
   .new-project-form .input-text {
-    border-bottom: 1px solid var(--gris2);
+    border-bottom: 1px solid var(--grey2);
     border-radius: 0;
-    background-color: var(--gris1);
+    background-color: var(--grey1);
   }
   .new-project-form .input-text::placeholder{
-    color: var(--gris2);
+    color: var(--grey2);
   }
   .projects {
     margin-top: 10rem;
@@ -137,18 +138,18 @@
   }
   .list-projects li a {
     font-size: 1.4rem;
-    color: var(--gris2);
+    color: var(--grey2);
     line-height: 1.5;
     font-weight: 300;
   }
   .app-header {
     display: flex;
     justify-content: space-between;
-    background-color: var(--gris2);
+    background-color: var(--grey2);
     padding: 4rem;
   }
   .user-name {
-    color: var(--blanco);
+    color: var(--white);
     font-size: 2.2rem;
     margin: 0;
   }
@@ -156,7 +157,7 @@
     font-weight: 900;
   }
   .nav-principal a {
-    color: var(--blanco);
+    color: var(--white);
     text-decoration: none;
   }
   .nav-principal a:first-of-type {
@@ -165,7 +166,7 @@
   
   /** Formulario crear y editar tareas **/
   .form{
-    background-color: var(--gris3);
+    background-color: var(--grey3);
     padding: 4rem;
   }
   .form form {
@@ -177,7 +178,7 @@
   }
   .container-input label {
     margin-bottom: 1rem;
-    color: var(--blanco);
+    color: var(--white);
   }
   .input-text {
     padding: 1rem;
@@ -202,7 +203,7 @@
   .task {
     display: flex;
     justify-content: space-between;
-    background-color: var(--blanco);
+    background-color: var(--white);
     padding: .5rem 2rem;
     align-items: center;
     margin-bottom: 1rem;
@@ -259,11 +260,11 @@
   .complete,
   .correct {
     background-color: rgba(154, 252, 154, .3);
-    color: var(--gris3);
+    color: var(--grey3);
   }
   .incomplete{
     background-color: rgba(255, 178, 178, .4);
-    color: var(--gris3);
+    color: var(--grey3);
   }
   .error {
     max-width: 600px;
@@ -294,7 +295,7 @@
   }
   
   .user-form {
-      background-color: var(--gris2);
+      background-color: var(--grey2);
       height: 100vh;
       min-height: 800px;
       display: flex;
@@ -306,7 +307,7 @@
       padding: 5rem 3rem;
       max-width: 500px;
       width: 95%;
-      background-color: var(--blanco);
+      background-color: var(--white);
       border-radius: 1rem;
   }
   
@@ -366,5 +367,5 @@
   }
   .alert-error {
     background-color: rgb(230, 78, 78);
-    color: var(--blanco);
+    color: var(--white);
   }
