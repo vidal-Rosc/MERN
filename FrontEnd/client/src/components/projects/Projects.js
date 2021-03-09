@@ -4,11 +4,11 @@ import Sidebar from '../layout/Sidebar';
 
 const Projects = () => {
     return (
-        <div className="contenedor-app">
+        <div className="container-app">
             <Sidebar />
-            <div className="seccion-pricipal">
+            <div className="main-section">
                 <main>
-                    <div className="contenedor-tareas">
+                    <div className="container-tasks">
 
                     </div>
                 </main>    
