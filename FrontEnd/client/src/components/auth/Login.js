@@ -34,14 +34,14 @@ const Login = () => {
 
 
     return ( 
-        <div className="form-usuario">
-            <div className="contenedor-form sombra-dark">
+        <div className="user-form">
+            <div className="container-form dark-shadow">
                 <h1>*** Login ***</h1>
 
                 <form
                     onSubmit={onSubmit}
                 >
-                    <div className="campo-form">
+                    <div className="field-form">
                         <label htmlFor="email"> Email</label>
                         <input
                             type="email"
@@ -53,7 +53,7 @@ const Login = () => {
                         />
                     </div>
 
-                    <div className="campo-form">
+                    <div className="field-form">
                         <label htmlFor="password"> Password</label>
                         <input
                             type="password"
@@ -64,15 +64,15 @@ const Login = () => {
                         />
                     </div>
 
-                    <div className="campo-form">
+                    <div className="field-form">
                         <input
                             type="submit"
-                            className="btn btn-primario btn-block"
+                            className="btn btn-primary btn-block"
                             value="Login"
                         />
                     </div>
                 </form>
-                <Link to={'/new-account'} className="enlace-cuenta">
+                <Link to={'/new-account'} className="link-account">
                         Not Register?
                 </Link>
             </div>
