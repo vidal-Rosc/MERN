@@ -41,15 +41,15 @@ const NewAccount = () => {
 
 
     return ( 
-        <div className="form-usuario">
-            <div className="contenedor-form sombra-dark">
+        <div className="user-form">
+            <div className="container-form dark-shadow">
                 <h1>*** New Member ***</h1>
 
                 <form
                     onSubmit={onSubmit}
                 >
 
-                    <div className="campo-form">
+                    <div className="field-form">
                         <label htmlFor="name">Name</label>
                         <input
                             type="text"
@@ -60,7 +60,7 @@ const NewAccount = () => {
                             onChange={onChange}
                         />
                     </div>
-                    <div className="campo-form">
+                    <div className="field-form">
                         <label htmlFor="email"> Email</label>
                         <input
                             type="email"
@@ -72,7 +72,7 @@ const NewAccount = () => {
                         />
                     </div>
 
-                    <div className="campo-form">
+                    <div className="field-form">
                         <label htmlFor="password"> Password</label>
                         <input
                             type="password"
@@ -83,7 +83,7 @@ const NewAccount = () => {
                         />
                     </div>
 
-                    <div className="campo-form">
+                    <div className="field-form">
                         <label htmlFor="repeatedpassword">Confirm Password</label>
                         <input
                             type="password"
@@ -94,15 +94,15 @@ const NewAccount = () => {
                         />
                     </div>
 
-                    <div className="campo-form">
+                    <div className="field-form">
                         <input
                             type="submit"
-                            className="btn btn-primario btn-block"
+                            className="btn btn-primary btn-block"
                             value="Register"
                         />
                     </div>
                 </form>
-                <Link to={'/'} className="enlace-cuenta">
+                <Link to={'/'} className="link-account">
                         Return to Login
                 </Link>
             </div>
