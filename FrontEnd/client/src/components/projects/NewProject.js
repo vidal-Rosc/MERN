@@ -1,7 +1,17 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
+import ProjectContext from '../../context/projects/ProjectContext';
 
 
 const NewProject = () => {
+
+    //De esta forma, podemos consumir el form:false dentro de este componente
+    //sin necesidad de pasarlo por props. De esta forma en projectsContext todas las 
+    //funciones y el state que definamos en el state del proyecto vamos a poder accederlos
+    //unicamente implementando la linea de abajo e importando el context que se quiera usar.
+
+    //State para el formulario
+    const projectsContext = useContext(ProjectContext);
+    const {form, showForm } = projectsContext;
 
     //state para el proyecto
     const [project, handleProject] = useState({
@@ -36,29 +46,35 @@ const NewProject = () => {
             <button
                 type="button"
                 className="btn btn-primary btn-block-small"
+                onClick={() => showForm()}
             >New Project</button>
 
-            <form
-                className="new-project-form"
-                onSubmit={onSubmit}
-            >
-                <input
-                    type="text"
-                    className="input-text"
-                    name="name"
-                    placeholder="Project name..."
-                    value={name}
-                    onChange={onChange}
-                />
-
-                <input
-                    type="submit"
-                    className="btn btn-block btn-primary"
-                    name="name"
-                    value="Add Project"
-                />  
-
-            </form>
+            {
+                form ?
+                    (
+                        <form
+                        className="new-project-form"
+                        onSubmit={onSubmit}
+                        >
+                            <input
+                                type="text"
+                                className="input-text"
+                                name="name"
+                                placeholder="Project name..."
+                                value={name}
+                                onChange={onChange}
+                            />
+        
+                            <input
+                                type="submit"
+                                className="btn btn-block btn-primary"
+                                name="name"
+                                value="Add Project"
+                            />  
+                        </form>
+                    )
+                    : null
+            }
         </Fragment>
     );
 }

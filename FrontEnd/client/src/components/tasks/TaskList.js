@@ -5,10 +5,10 @@ import Task from './Task';
 const TaskList = () => {
 
     const tasks = [
-        {name: "select a platform", status: true},
-        {name: "Improve css", status: false},
-        {name: "Add new Form", status: true},
-        {name: "Add new class for buttons", status: false}
+        {id:1, name: "select a platform", status: true},
+        {id:2, name: "Improve css", status: false},
+        {id:3, name: "Add new Form", status: true},
+        {id:4, name: "Add new class for buttons", status: false}
     ]
     return ( 
         <Fragment>
