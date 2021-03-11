@@ -17,7 +17,7 @@ const ProjectList = () => {
     },[]);
     
     //Revisamos si hay contenido en proyectos
-    if(proyectos.length === 0) return null;
+    if(proyectos.length === 0) return <p>There's not Projects yet. Let's start one :)</p>;
 
 
     return ( 
