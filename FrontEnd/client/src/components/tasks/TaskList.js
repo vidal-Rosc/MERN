@@ -1,8 +1,17 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Task from './Task';
-
+import ProjectContext from '../../context/projects/ProjectContext';
 
 const TaskList = () => {
+    //State para los proyectos
+    const projectsContext = useContext(ProjectContext);
+    const { project, deleteProject } = projectsContext;
+
+    //Si no hay proyecto seleccionado
+    if(!project) return <h2>*** Select a Project ***</h2>;
+
+    //Array destructuring para obtener la posicion [0] del proyecto
+    const [actualProject] = project;
 
     const tasks = [
         {id:1, name: "select a platform", status: true},
@@ -10,9 +19,15 @@ const TaskList = () => {
         {id:3, name: "Add new Form", status: true},
         {id:4, name: "Add new class for buttons", status: false}
     ]
+
+    //Elimina el projecto
+    const deleteProjectxId = () => {
+        deleteProject(actualProject.id);
+    }
+
     return ( 
         <Fragment>
-            <h2>Project: Gem's store</h2>
+            <h2>Project: {actualProject.name}</h2>
 
             <ul className="tasks-list">
                 {tasks.length === 0
@@ -27,6 +42,7 @@ const TaskList = () => {
             <button
                 type="button"
                 className="btn btn-delete"
+                onClick={deleteProjectxId}
             >Delete Project &times;</button>
         </Fragment>
     );
