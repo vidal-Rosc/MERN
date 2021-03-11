@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
+import { TASKS_PROJECT } from '../../types';
 
 
 const TaskState = props => {
@@ -28,10 +29,21 @@ const TaskState = props => {
     //Creamos el dispatch y el state
     const [state, dispatch] = useReducer( TaskReducer, initialState );
 
+    //Creamos las funciones
+
+    //Obtenemos las tareas de un proyecto
+    const getTasks = projectId => {
+        dispatch({
+            type:TASKS_PROJECT,
+            payload: projectId
+        })
+    }
+
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
+                getTasks
             }}
         >
             {props.children}
