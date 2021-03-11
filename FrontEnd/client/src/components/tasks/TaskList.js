@@ -13,12 +13,7 @@ const TaskList = () => {
     //Array destructuring para obtener la posicion [0] del proyecto
     const [actualProject] = project;
 
-    const tasks = [
-        {id:1, name: "select a platform", status: true},
-        {id:2, name: "Improve css", status: false},
-        {id:3, name: "Add new Form", status: true},
-        {id:4, name: "Add new class for buttons", status: false}
-    ]
+    const tasks = []
 
     //Elimina el projecto
     const deleteProjectxId = () => {
