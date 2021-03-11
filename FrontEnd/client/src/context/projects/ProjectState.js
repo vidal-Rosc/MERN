@@ -13,7 +13,7 @@ import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, ACTUAL_PROJECT,
 const ProjectState = props => {
 
     const proyectos = [
-        { id:1, name: "Gem's store" },
+        { id:1, name: "Gem's store By Baronessa Alder" },
         { id:2, name: 'clothes & shoes  website' },
         { id:3, name: 'intranet' },
         { id:4, name: 'Abogados & Asociados Web' }
