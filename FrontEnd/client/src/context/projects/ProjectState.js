@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import ProjectContext from './ProjectContext';
 import ProjectReducer from './ProjectReducer';
 import {v4 as uuidv4} from 'uuid';
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM } from '../../types';
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, ACTUAL_PROJECT, DELETE_PROJECT } from '../../types';
 
 
 //Definimos el state qe se va a tener y tambien van a estar
@@ -13,7 +13,7 @@ import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM } from '../../ty
 const ProjectState = props => {
 
     const proyectos = [
-        { id:1, name: 'gems store' },
+        { id:1, name: "Gem's store" },
         { id:2, name: 'clothes & shoes  website' },
         { id:3, name: 'intranet' },
         { id:4, name: 'Abogados & Asociados Web' }
@@ -22,6 +22,7 @@ const ProjectState = props => {
         proyectos : [],
         form : false,
         errorForm: false,
+        project: null
     }
 
     //Dispatch para ejecutar las acciones
@@ -63,7 +64,21 @@ const ProjectState = props => {
         })
     }
 
+    //Selecciona el proyecto en el sideBar
+    const actualProject = projectId => {
+        dispatch({
+            type: ACTUAL_PROJECT,
+            payload: projectId
+        })
+    }
     
+    //Eliminar un projecto
+    const deleteProject = projectId => {
+        dispatch({
+            type: DELETE_PROJECT,
+            payload: projectId
+        })
+    }
 
 
     return (
@@ -72,10 +87,13 @@ const ProjectState = props => {
                 proyectos: state.proyectos,
                 form: state.form,
                 errorForm: state.errorForm,
+                project: state.project,
                 showForm,
                 getProjects,
                 addProject,
-                error
+                error,
+                actualProject,
+                deleteProject
             }}
         >
             {props.children}
