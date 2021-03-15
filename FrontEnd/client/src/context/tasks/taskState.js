@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import { TASKS_PROJECT } from '../../types';
+import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK, DELETE_TASK, TASK_STATUS } from '../../types';
 
 
 const TaskState = props => {
@@ -24,6 +24,8 @@ const TaskState = props => {
             {id:15, name: "Add new alerts", status: false, projectId: 4},
             {id:16, name: "Call for changing the title", status: false, projectId: 4}    
         ],
+        taskProjects: null,
+        taskError: false,
     }
 
     //Creamos el dispatch y el state
@@ -39,11 +41,47 @@ const TaskState = props => {
         })
     }
 
+    //Agregar una tarea al proyecto seleccionado$
+    const addTask = task => {
+        dispatch({
+            type: ADD_TASK,
+            payload: task
+        })
+    }
+
+    //Muestra un error en caso de no pasar la validacion
+    const validateTask = () => {
+        dispatch({
+            type: VALIDATE_TASK
+        })
+    }
+
+    //Borrar tareas por ID
+    const deleteTask = id => {
+        dispatch({
+            type: DELETE_TASK,
+            payload: id
+        })
+    }
+
+    //cambia el status de la tarea
+    const taskStatus = task => {
+        dispatch({
+            type: TASK_STATUS,
+            payload: task
+        })
+    }
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
-                getTasks
+                taskProjects: state.taskProjects,
+                taskError: state.taskError,
+                getTasks,
+                addTask,
+                validateTask,
+                deleteTask,
+                taskStatus,
             }}
         >
             {props.children}
