@@ -1,11 +1,17 @@
 import React, { Fragment, useContext } from 'react';
 import Task from './Task';
 import ProjectContext from '../../context/projects/ProjectContext';
+import TaskContext from '../../context/tasks/taskContext';
+import { CSSTransition, TransitionGroup } from  'react-transition-group';
 
 const TaskList = () => {
     //State para los proyectos
     const projectsContext = useContext(ProjectContext);
     const { project, deleteProject } = projectsContext;
+
+    //State para las tareas, obteniendo las tareas
+    const tasksContext = useContext(TaskContext);
+    const { taskProjects } = tasksContext;
 
     //Si no hay proyecto seleccionado
     if(!project) return <h2>*** Select a Project ***</h2>;
@@ -13,7 +19,6 @@ const TaskList = () => {
     //Array destructuring para obtener la posicion [0] del proyecto
     const [actualProject] = project;
 
-    const tasks = []
 
     //Elimina el projecto
     const deleteProjectxId = () => {
@@ -25,13 +30,22 @@ const TaskList = () => {
             <h2>Project: {actualProject.name}</h2>
 
             <ul className="tasks-list">
-                {tasks.length === 0
+                {taskProjects.length === 0
                 ? (<li className="task"><p>There's not Tasks</p></li>)
-                : tasks.map(task => (
-                    <Task
-                        task={task}
-                    />
-                ))
+                :
+                    <TransitionGroup>
+                        { taskProjects.map(task => (
+                            <CSSTransition
+                                key={task.id}
+                                timeout={400}
+                                classNames="task"
+                            >
+                                <Task
+                                    task={task}
+                                />
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup>
                 }
             </ul>
             <button
