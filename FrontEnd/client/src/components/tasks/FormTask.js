@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import ProjectContext from '../../context/projects/ProjectContext';
 import TaskContext from '../../context/tasks/taskContext';
 
@@ -9,7 +9,18 @@ const FormTask = () => {
 
     //Obtenemos la funcion para agregar tareas nuevas
     const tasksContext = useContext(TaskContext);
-    const { addTask, validateTask, taskError, getTasks } = tasksContext;
+    const { addTask, validateTask, taskError, getTasks, selectedTask, editTask, cleanSelectedTask } = tasksContext;
+
+    //Para detectar si hay una tarea seleccionada
+    useEffect(() => {
+        if(selectedTask != null){ //Si hay una tarea seleccionada
+            handleTask(selectedTask);
+        }else {
+            handleTask({
+                name: ''
+            }); 
+        }
+    }, [selectedTask])
 
     //State del formulario
     const [task, handleTask] = useState({
@@ -36,16 +47,25 @@ const FormTask = () => {
     const onSubmit = e => {
         e.preventDefault();
 
-        //validar
+        //validamos
         if(name.trim() === ''){
             validateTask();
             return;
         }
 
-        //Agregamos la nueva tarea al state principal de tareas
-         task.projectId = actualProject.id;
-         task.status = false;
-         addTask(task);
+        //Revisamos si edita la tarea o agrega una nueva
+        if(selectedTask === null ){ 
+            //Agregamos la nueva tarea al state principal de tareas (tarea nuea)
+            task.projectId = actualProject.id;
+            task.status = false;
+            addTask(task);
+        } else {
+            //Editamos o actualizamos la tarea existente
+            editTask(task);
+
+            //Eliminamos la tarea seleccionada del state
+            cleanSelectedTask();
+        }
         
         //Obtenemos las tareas del proyecto actual
         getTasks(actualProject.id);
@@ -77,7 +97,7 @@ const FormTask = () => {
                     <input
                         type="submit"
                         className="btn btn-primary btn-submit btn-block-small"
-                        value="Add Task"
+                        value={selectedTask ? 'Edit Task': 'Add Task'}
                     />
                 </div>
             </form>
