@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK, DELETE_TASK, TASK_STATUS } from '../../types';
+import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK, DELETE_TASK, TASK_STATUS, ACTUAL_TASK } from '../../types';
 
 
 const TaskState = props => {
@@ -26,6 +26,7 @@ const TaskState = props => {
         ],
         taskProjects: null,
         taskError: false,
+        selectedTask: null,
     }
 
     //Creamos el dispatch y el state
@@ -71,17 +72,27 @@ const TaskState = props => {
             payload: task
         })
     }
+
+    //Seleccionar la tarea actual
+    const actualTask = task => {
+        dispatch({
+            type: ACTUAL_TASK,
+            payload: task
+        })
+    }
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
                 taskProjects: state.taskProjects,
                 taskError: state.taskError,
+                selectedTask: state.selectedTask,
                 getTasks,
                 addTask,
                 validateTask,
                 deleteTask,
                 taskStatus,
+                actualTask,
             }}
         >
             {props.children}
