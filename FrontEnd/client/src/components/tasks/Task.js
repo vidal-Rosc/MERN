@@ -12,7 +12,7 @@ const Task = ({task}) => {
 
     //Obtenemos la funcion para eliminar las tareas
     const tasksContext = useContext(TaskContext);
-    const { deleteTask, getTasks, taskStatus } = tasksContext;
+    const { deleteTask, getTasks, taskStatus, actualTask } = tasksContext;
 
     const [actualProject] = project;
 
@@ -24,16 +24,16 @@ const Task = ({task}) => {
 
     //Para modificar el status de las tareas 
     const changeTaskStatus = task => {
-    //if(task.status){
-    //    task.status= false;
-    //}else{
-    //   task.status= true; 
-    //}
-    //taskStatus(task);
-        task.status ? task.status= false : task.status = true;
-        taskStatus(task)
-    }
+    
+        task.status ? task.status= false : task.status = true;   //** if(task.status){
+        taskStatus(task)                                         //     task.status= false;
+    }                                                            //** }else{
+    // ********************************************************  //     task.status= true; 
 
+    //Editar la tarea seleccionada
+    const selectTask = task => {
+        actualTask(task)
+    }
     
 
     return ( 
@@ -64,6 +64,7 @@ const Task = ({task}) => {
                 <button
                     type="button"
                     className="btn btn-primary"
+                    onClick={() => selectTask(task)}
                 >Edit</button>
 
                 <button
