@@ -1,6 +1,6 @@
 # MERN PROJECT
 
-MERN utiliza JavaScript como único lenguaje Y emplea interesantes tecnologías, las cuales son mongoDB, Express, React y Node.js. La ventaja que encontramos al utilizar este stack en específico, es que nos permite profundizar en un solo lenguaje de programación, logrando así, enfocar y reforzar nuestros conocimientos para especializarnos en JavaScript.
+MERN utiliza JavaScript como único lenguaje Y emplea interesantes tecnologías, las cuales son mongoDB, Express, React y Node.js. La ventaja que encontramos al utilizar este stack en específico, es que nos permite profundizar en un solo lenguaje de programación, JavaScript.
 
 # MongoDB
 
