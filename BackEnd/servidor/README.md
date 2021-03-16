@@ -4,7 +4,7 @@
 
 
 Para reiniciar el servidor : npm i nodemon
-Servidor: npm i express mongoose dotenv
+Dependencies: npm i express mongoose dotenv
 
 dotenv: Nos permite crear un archivo con variables de entorno - produccion
 express: Servidor
