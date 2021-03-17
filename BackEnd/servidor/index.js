@@ -10,12 +10,18 @@ const server = express();
 //Conectamos la BD
 connectionDB();
 
+//Habilitamos el express.JSON para leer los datos que el usuario escriba
+server.use(express.json({ extended: true }));
+
 //Asignamos un puerto
-const PORT = process.env.PORT || 4010;
+const PORT = process.env.PORT || 5000;
+
+//Importamos las rutas
+server.use('./api/users', require('./routes/users'));
 
 //Definimos el home-page
-server.get('/', (request, response) => {
-    response.send('Welcome to the MERN server')
+server.get('/', (req, res) => {
+    res.send('Welcome to the MERN server')
 })
 
 //Encendemos el Servidor

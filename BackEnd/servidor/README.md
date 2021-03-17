@@ -23,3 +23,9 @@ mpm - run - dev
 Conexion a la BD
 https://mongoosejs.com/docs/connections.html
  
+Para Hashear las passwords : npm i bcryptjs
+
+Para validaciones : npm i express-validator
+
+JSON web Token: npm i jsonwebtoken
+https://jwt.io/

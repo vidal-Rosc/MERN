@@ -10,7 +10,8 @@ const connectionDB = async () => {
         await mongoose.connect(process.env.DB_MONGO, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useFindAndModify: false
+            useFindAndModify: false,
+            useCreateIndex: true
         });
         console.log('DDBB Connection successful')
     } catch (error) {
