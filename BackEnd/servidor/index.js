@@ -17,7 +17,9 @@ server.use(express.json({ extended: true }));
 const PORT = process.env.PORT || 5000;
 
 //Importamos las rutas
-server.use('./api/users', require('./routes/users'));
+server.use('/api/users', require('./routes/users'));
+
+server.use('/api/auth', require('./routes/auth'));
 
 //Definimos el home-page
 server.get('/', (req, res) => {
