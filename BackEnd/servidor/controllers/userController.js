@@ -44,7 +44,7 @@ exports.newUser =  async (request, response) => {
             }
 
         }
-
+        
         //Firmamos el JWT
         jwt.sign(payload, process.env.SECRET, {
             expiresIn: 3600
