@@ -9,7 +9,7 @@ const userController = require('../controllers/userController');
 
 const { check } = require('express-validator');
 
-//Enviamos los usuarios a /api/users
+// /api/users
 router.post('/',
     [
         check('name', 'The name is required').not().isEmpty(),
