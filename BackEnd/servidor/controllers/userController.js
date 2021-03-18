@@ -13,9 +13,9 @@ exports.newUser =  async (request, response) => {
     //Siempre se recomienda usar un try-catch de esta manera manejamos errores
     //revisamos si hay errores
     const errors = validationResult(request);
-    if(!errors.isEmpty()){
-        return response.status(400).json({ errors: errors.array() });
-    }
+        if(!errors.isEmpty()){
+            return response.status(400).json({ errors: errors.array() });
+        }
 
     //Extraemos email and password
     const { email, password } = request.body;
