@@ -21,6 +21,8 @@ server.use('/api/users', require('./routes/users'));
 
 server.use('/api/auth', require('./routes/auth'));
 
+server.use('/api/projects', require('./routes/projects'));
+
 //Definimos el home-page
 server.get('/', (req, res) => {
     res.send('Welcome to the MERN server')
