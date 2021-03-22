@@ -3,17 +3,17 @@ import Sidebar from '../layout/Sidebar';
 import Bar from '../layout/Bar';
 import FormTask from '../tasks/FormTask';
 import TaskList from '../tasks/TaskList';
-import authContext from '../../context/authentication/authContext';
+import AuthContext from '../../context/authentication/authContext';
 
 
 const Projects = () => {
 
     //Extramos los datos del autenticado
-    const authContext = useContext(authContext);
+    const authContext = useContext(AuthContext);
     const { userAuthenticated } = authContext;
 
     useEffect( () => {
-        userAuthenticated()
+        userAuthenticated();
     }, []);
 
     return (
