@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {Link } from 'react-router-dom';
+import AlertContext from '../../context/alerts/alertContext';
 
 
 
 const NewAccount = () => {
+
+    //Extraemos los valores del context
+    const alertContext = useContext(AlertContext);
+
+    const { alert, displayAndHideAlert} = alertContext;
 
     //Definimos el state
     const [user, handleUser] = useState({
@@ -28,12 +34,23 @@ const NewAccount = () => {
         e.preventDefault();
 
         //Validar formulario
+        if(name.trim() === '' || email.trim() === '' || password.trim() === '' || 
+           repeatedpassword.trim() === ''){
+            displayAndHideAlert('All fields are required', 'alert-error');
+            return;
+        }
 
         //Validar que el password sea minimo de 5 caracteres
-
+        if(password.length < 5){
+            displayAndHideAlert('Password must contain min 5 characters', 'alert-error');
+            return;
+        }
 
         //Validar que el password y el repeatedpassword sean lo mismo
-
+        if(password !== repeatedpassword){
+            displayAndHideAlert('Non-identical passwords', 'alert-error');
+            return;
+        }
 
         //Enviarlo al action
 
@@ -42,6 +59,7 @@ const NewAccount = () => {
 
     return ( 
         <div className="user-form">
+            { alert ? ( <div className={`alert ${alert.category}`}>{alert.msg}</div>) : null }
             <div className="container-form dark-shadow">
                 <h1>*** New Member ***</h1>
 
