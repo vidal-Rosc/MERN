@@ -1,4 +1,4 @@
-import react, { useReducer } from 'react';
+import React, { useReducer } from 'react';
 import AlertContext  from './alertContext';
 import AlertReducer  from './alertReducer';
 
