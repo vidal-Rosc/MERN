@@ -109,6 +109,7 @@ const AuthState = props => {
                 message: state.message,
                 userRegistration,
                 userLogin,
+                userAuthenticated,
                 
             }}
         >
