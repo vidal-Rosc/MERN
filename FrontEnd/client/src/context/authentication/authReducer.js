@@ -15,13 +15,15 @@ export default (state, action) => {
             return {
                 ...state,
                 authenticated: true,
-                message: null
+                message: null,
+                uploading: false
             }
         case GET_USER:
             return {
                 ...state,
                 authenticated: true,
-                user: action.payload
+                user: action.payload,
+                uploading: false
             }
         case LOG_OUT:
         case UNSUCCESFUL_LOGIN:
@@ -32,7 +34,8 @@ export default (state, action) => {
                 token: null,
                 user: null,
                 authenticated: null,
-                message: action.payload
+                message: action.payload,
+                uploading: false
             }
 
         default:
