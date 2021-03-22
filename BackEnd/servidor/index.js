@@ -4,11 +4,17 @@ const express = require('express');
 //Importamos para conectarnos a la BD
 const connectionDB = require('./config/db');
 
+//Importamos cors
+const cors = require('cors');
+
 //Creamos el servidor
 const server = express();
 
 //Conectamos la BD
 connectionDB();
+
+//Habilitamos cors
+server.use(cors());
 
 //Habilitamos el express.JSON para leer los datos que el usuario escriba
 server.use(express.json({ extended: true }));
