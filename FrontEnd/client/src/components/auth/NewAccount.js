@@ -1,15 +1,31 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {Link } from 'react-router-dom';
 import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/authentication/authContext';
 
 
 
-const NewAccount = () => {
+const NewAccount = (props) => {
 
     //Extraemos los valores del context
     const alertContext = useContext(AlertContext);
-
     const { alert, displayAndHideAlert} = alertContext;
+
+    const authContext = useContext(AuthContext);
+    const { userRegistration, message, authenticated } = authContext
+
+    //Si el usuario: se registra, se autentica o esta duplicado
+    useEffect(() => {
+        if(authenticated){
+            props.history.push('/projects');
+        }
+
+        if(message){
+            displayAndHideAlert(message.msg, message.category);
+        }
+
+
+    }, [message, authenticated, props.history]);
 
     //Definimos el state
     const [user, handleUser] = useState({
@@ -41,8 +57,8 @@ const NewAccount = () => {
         }
 
         //Validar que el password sea minimo de 5 caracteres
-        if(password.length < 5){
-            displayAndHideAlert('Password must contain min 5 characters', 'alert-error');
+        if(password.length < 6){
+            displayAndHideAlert('Password must contain min 6 characters', 'alert-error');
             return;
         }
 
@@ -53,6 +69,11 @@ const NewAccount = () => {
         }
 
         //Enviarlo al action
+        userRegistration({
+            name,
+            email,
+            password
+        });
 
     }
 
