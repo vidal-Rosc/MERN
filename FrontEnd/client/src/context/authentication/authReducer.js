@@ -20,14 +20,18 @@ export default (state, action) => {
         case GET_USER:
             return {
                 ...state,
+                authenticated: true,
                 user: action.payload
             }
+        case LOG_OUT:
         case UNSUCCESFUL_LOGIN:
         case UNSUCCESFUL_REGISTRATION:
             localStorage.removeItem('token');
             return {
                 ...state,
-                authenticated: false,
+                token: null,
+                user: null,
+                authenticated: null,
                 message: action.payload
             }
 
