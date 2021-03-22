@@ -7,7 +7,12 @@ import ProjectState from './context/projects/ProjectState';
 import TaskState from './context/tasks/taskState';
 import AlertState  from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
+import authToken from './config/authToken';
 
+//Esto lo hacemos por si cse recargue la app, no se pierdan los datos de sesion
+//Revisamos si tenemos un token
+const token = localStorage.getItem('token');
+if (token) authToken(token);
 
 function App() {
   //Todo lo que va dentro el Switch es el contenido de CADA UNA de las paginas
