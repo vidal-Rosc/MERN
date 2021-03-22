@@ -18,7 +18,8 @@ const AuthState = props => {
         token: localStorage.getItem('token'),
         authenticated: null,
         user: null,
-        message: null
+        message: null,
+        uploading: true // Para no ver la pagina del login
     }
 
     const [state, dispatch] = useReducer( AuthReducer, initialState );
@@ -104,8 +105,7 @@ const AuthState = props => {
     const userLogout = () => {
         dispatch({
             type : LOG_OUT
-        })
-
+        });
     }
 
     return(
@@ -115,6 +115,7 @@ const AuthState = props => {
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
+                uploading: state.uploading,
                 userRegistration,
                 userLogin,
                 userAuthenticated,
