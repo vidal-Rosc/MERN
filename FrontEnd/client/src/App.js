@@ -7,7 +7,8 @@ import ProjectState from './context/projects/ProjectState';
 import TaskState from './context/tasks/taskState';
 import AlertState  from './context/alerts/alertState';
 import AuthState from './context/authentication/authState';
-import authToken from './config/authToken';
+import authToken from './config/authToken'; 
+import PrivateRoute from './components/routes/privateRoute';
 
 //Esto lo hacemos por si cse recargue la app, no se pierdan los datos de sesion
 //Revisamos si tenemos un token
@@ -28,7 +29,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/new-account" component={NewAccount} />
-                <Route exact path="/projects" component={Projects} />
+                <PrivateRoute exact path="/projects" component={Projects} />
               </Switch>
             </Router>
           </AuthState>
