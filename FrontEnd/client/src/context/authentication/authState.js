@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import AuthContext from './authContext';
 import AuthReducer from './authReducer';
 import axiosClient from '../../config/axios';
+import authToken from '../../config/authToken';
 import {SUCCESFUL_REGISTRATION, 
     UNSUCCESFUL_REGISTRATION, 
     GET_USER,
@@ -22,6 +23,7 @@ const AuthState = props => {
 
     const [state, dispatch] = useReducer( AuthReducer, initialState );
 
+    //Para registrar un usuario
     const userRegistration = async data => {
         try {
             const response = await axiosClient.post('/api/users', data);
@@ -30,6 +32,9 @@ const AuthState = props => {
                 type : SUCCESFUL_REGISTRATION,
                 payload : response.data        
             })
+
+            //Obtenemos el usuario logado
+            userAuthenticated();
         } catch (error) {
             //console.log(error.response.data.msg);
             const alert = {
@@ -44,9 +49,56 @@ const AuthState = props => {
 
     }
 
+    //Retorna el usuario autenticado
+    const userAuthenticated =  async () => {
+        const token = localStorage.getItem('token');
+        if(token){
+            //Enviamos el token al header
+            authToken(token);
 
+        }
+        try {
+            const response = await axiosClient.get('/api/auth');
+            console.log(response)
+            dispatch({
+                type : GET_USER,
+                payload : response.data.user
+            })
+            
+        } catch (error) {
+            console.log(error.response)
+            dispatch({
+                type : UNSUCCESFUL_LOGIN
+            });    
+        }
+    }
 
+    //Para iniciar sesion
+    const userLogin = async data => {
 
+        try {
+            const response = await axiosClient.post('/api/auth', data);
+            console.log(response);
+            dispatch({
+                type : SUCCESFUL_LOGIN,
+                payload : response.data
+            });
+            
+            //Obtenemos el usuario logado
+            userAuthenticated();
+        } catch (error) {
+            console.log(error.response.data.msg)
+            const alert = {
+                msg : error.response.data.msg,
+                category : 'alert-error'
+            }
+            dispatch({
+                type : UNSUCCESFUL_LOGIN,
+                payload : alert
+            });
+            
+        }
+    }
 
     return(
         <AuthContext.Provider
@@ -56,6 +108,8 @@ const AuthState = props => {
                 user: state.user,
                 message: state.message,
                 userRegistration,
+                userLogin,
+                
             }}
         >
             {props.children}
