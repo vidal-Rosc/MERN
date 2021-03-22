@@ -29,3 +29,5 @@ Para validaciones : npm i express-validator
 
 JSON web Token: npm i jsonwebtoken
 https://jwt.io/
+
+npm i cors
