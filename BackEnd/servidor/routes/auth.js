@@ -9,16 +9,24 @@ const router = express.Router();
 //Importamos el controller de autenticacion
 const authController = require('../controllers/authController');
 
+//Importamos nuestro middleware
+const auth = require('../middlewares/auth');
+
 //Para validar
 const { check } = require('express-validator');
 
+//Para Iniciar Sesion
 // /api/auth
 router.post('/',
-    [
-        check('email', 'Enter a correct email').isEmail(),
-        check('password', 'The password must have at least 6 characters').isLength({ min: 6 })
-    ],
-    authController.userAuthenticator
 
+    authController.userAuthenticator
 )
+
+//Obtiene el usuario logado
+router.get('/',
+    auth,
+    authController.authenticatedUser
+)
+
+
 module.exports = router;
