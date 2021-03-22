@@ -1,9 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import {Link } from 'react-router-dom';
+import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/authentication/authContext';
 
 
 
-const Login = () => {
+const Login = (props) => {
+
+    //Extraemos los valores del context
+    const alertContext = useContext(AlertContext);
+    const { alert, displayAndHideAlert} = alertContext;
+
+    const authContext = useContext(AuthContext);
+    const { userLogin, message, authenticated } = authContext;
+
+    //En caso de que el email o password sean incorrectos
+    useEffect(() => {
+        if(authenticated){
+            props.history.push('/projects');
+        }
+
+        if(message){
+            displayAndHideAlert(message.msg, message.category);
+        }
+
+
+    }, [message, authenticated, props.history]);
 
     //Definimos el state
     const [user, handleUser] = useState({
@@ -26,15 +48,20 @@ const Login = () => {
         e.preventDefault();
 
         //Validar formulario
-
+        if(email.trim() === '' || password.trim() === ''){
+            displayAndHideAlert('All fields are required', 'alert-error');
+            return;
+        }
 
         //Enviarlo al action
+        userLogin({ email, password });
 
     }
 
 
     return ( 
         <div className="user-form">
+            { alert ? ( <div className={`alert ${alert.category}`}>{alert.msg}</div>) : null }
             <div className="container-form dark-shadow">
                 <h1>*** Login ***</h1>
 
