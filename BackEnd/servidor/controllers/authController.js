@@ -9,26 +9,28 @@ const { validationResult } = require('express-validator');
 //Importamos JWT
 const jwt  = require('jsonwebtoken');
 
-exports.userAuthenticator = async ( request, response ) => {
+
+//Autentica al Usuario
+exports.userAuthenticator = async ( req, res ) => {
     //revisamos si hay errores
-    const errors = validationResult(request);
+    const errors = validationResult(req);
         if(!errors.isEmpty()){
-            return response.status(400).json({ errors: errors.array() });
+            return res.status(400).json({ errors: errors.array() });
         }
     
     //Extraemos email and password
-    const { email, password } = request.body;
+    const { email, password } = req.body;
 
     try {
         //Revisamos que el usuario este registrado
         let user = await User.findOne({ email });
             if(!user){
-                return response.status(400).json({ msg: 'This user does not exist' });
+                return res.status(400).json({ msg: 'This user does not exist' });
             }
         //Revisamos que la password sea correcta
         const correctPassword = await bcryptjs.compare(password, user.password);
             if(!correctPassword){
-                return response.status(400).json({ msg: 'Password incorrect' })
+                return res.status(400).json({ msg: 'Password incorrect' })
             }
         //Si el email y la password son correctos
         //Creamos el JWT
@@ -46,12 +48,25 @@ exports.userAuthenticator = async ( request, response ) => {
             if(error) throw error;
 
             //Confirmamos al usuario
-            response.json({ token });
-        });
-
-        
+            res.json({ token });
+        });    
     } catch (error) {
         console.log(error)
-    }
+    }  
+}
+
+
+//Obtiene el Usuario Logado
+exports.authenticatedUser =  async (req, res) => {
+
+    //Extraemos email and password
+    const { email, password } = req.body;
     
+    try {
+        const user = await User.findById(req.user.id).select(-password);
+        res.json({ user });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'An error was found'})     
+    }
 }
