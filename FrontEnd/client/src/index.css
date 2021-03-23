@@ -1,8 +1,8 @@
 :root {
     --white: #ffffff;
-    --grey1: #edf2f6;
-    --grey2: #2f3848;
-    --grey3: #1a202d;
+    --grey1: #B8BDDA;
+    --grey2: #666EA2;
+    --viol1: #0F1748;
     --black: #000000;
     --blue: #233460;
     --headingFont:'Raleway', sans-serif;
@@ -58,7 +58,7 @@
     padding: 1.5rem;
     font-size: 1.4rem;
     font-weight: 400;
-    border-radius: .5rem;
+    border-radius: 11rem;
     border: none;
     transition: background-color .3s ease;
   }
@@ -70,7 +70,7 @@
     color: var(--white);
   }
   .btn-primary:hover {
-    background: var(--grey3);
+    background: var(--viol1);
   }
   .btn-secundary {
     background-color: var(--grey1);
@@ -94,9 +94,15 @@
   }
 
   .btn-delete {
-    background-color: var(--white);
+    background-color: var(--grey2);
+    color: var(--white);
   }
   
+  .btn-logout {
+    color: var(--white);
+    font-weight: 700;
+  }
+
   @media (min-width: 768px) {
     .container-app {
         display: flex;
@@ -166,7 +172,7 @@
   
   /** Formulario crear y editar tareas **/
   .form{
-    background-color: var(--grey3);
+    background-color: var(--viol1);
     padding: 4rem;
   }
   .form form {
