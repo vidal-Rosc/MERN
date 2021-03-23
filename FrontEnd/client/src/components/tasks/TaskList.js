@@ -22,7 +22,7 @@ const TaskList = () => {
 
     //Elimina el projecto
     const deleteProjectxId = () => {
-        deleteProject(actualProject.id);
+        deleteProject(actualProject._id);
     }
 
     return ( 
