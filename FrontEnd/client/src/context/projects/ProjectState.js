@@ -1,9 +1,8 @@
 import React, { useReducer } from 'react';
 import ProjectContext from './ProjectContext';
 import ProjectReducer from './ProjectReducer';
-import {v4 as uuidv4} from 'uuid';
-import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, ACTUAL_PROJECT, DELETE_PROJECT } from '../../types';
-
+import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, ACTUAL_PROJECT, DELETE_PROJECT, ERROR_PROJECT } from '../../types';
+import axiosClient from '../../config/axios';
 
 //Definimos el state qe se va a tener y tambien van a estar
 //las diferentes funciones con dispatch hacia los types.
@@ -12,17 +11,12 @@ import { FORM_PROJECT, GET_PROJECTS, ADD_PROJECT, VALIDATE_FORM, ACTUAL_PROJECT,
 
 const ProjectState = props => {
 
-    const proyectos = [
-        { id:1, name: "Gem's store By Baronessa Alder" },
-        { id:2, name: 'clothes & shoes  website' },
-        { id:3, name: 'intranet' },
-        { id:4, name: 'Abogados & Asociados Web' }
-    ]
     const initialState = {
         proyectos : [],
         form : false,
         errorForm: false,
-        project: null
+        project: null,
+        message: null
     }
 
     //Dispatch para ejecutar las acciones
@@ -39,22 +33,55 @@ const ProjectState = props => {
     }
 
     //Obtener los proyectos
-    const getProjects = () => {
-        dispatch({
-            type: GET_PROJECTS,
-            payload: proyectos
-        })
+    const getProjects = async () => {
+        //dispatch({
+        //    type: GET_PROJECTS,
+        //    payload: proyectos
+        //})
+        try {
+            const result = await axiosClient.get('/api/projects');
+
+            dispatch({
+                type: GET_PROJECTS,
+                payload: result.data.projects
+            });
+        } catch (error) {
+            const alert = {
+                msg: 'Projects NOT FOUND',
+                category: 'alert-error'
+            }
+            dispatch({
+                type: ERROR_PROJECT,
+                payload: alert
+            });
+        }
     }
 
     //Agregar un nuevo proyecto
-    const addProject = project => {
-        project.id = uuidv4();
-
+    const addProject = async project => {
         //insertamos el proyecto en el state
-        dispatch({
-            type: ADD_PROJECT,
-            payload: project
-        })
+        //dispatch({
+        //    type: ADD_PROJECT,
+        //    payload: project
+        //})
+        try {
+            const result = await axiosClient.post('/api/projects', project);
+            console.log(result);
+            //insertamos el proyecto en el state
+            dispatch({
+                type: ADD_PROJECT,
+                payload: result.data
+            })
+        } catch (error) {
+            const alert = {
+                msg: 'An error was found. Project can not be added',
+                category: 'alert-error'
+            }
+            dispatch({
+                type: ERROR_PROJECT,
+                payload: alert
+            });
+        }
     }
 
     //Validando el formulario-- Mostrar errores
@@ -73,11 +100,29 @@ const ProjectState = props => {
     }
     
     //Eliminar un projecto
-    const deleteProject = projectId => {
-        dispatch({
-            type: DELETE_PROJECT,
-            payload: projectId
-        })
+    const deleteProject =  async projectId => {
+        //dispatch({
+        //    type: DELETE_PROJECT,
+        //    payload: projectId
+        //})
+        try {
+            await axiosClient.delete(`/api/projects/${projectId}`);
+
+            dispatch({
+                type: DELETE_PROJECT,
+                payload: projectId
+            });
+
+        } catch (error) {
+            const alert = {
+                msg: 'An error was found',
+                category: 'alert-error'
+            }
+            dispatch({
+                type: ERROR_PROJECT,
+                payload: alert
+            });
+        }
     }
 
 
@@ -88,6 +133,7 @@ const ProjectState = props => {
                 form: state.form,
                 errorForm: state.errorForm,
                 project: state.project,
+                message: state.message,
                 showForm,
                 getProjects,
                 addProject,
