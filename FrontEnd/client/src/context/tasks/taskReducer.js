@@ -1,18 +1,18 @@
-import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK, DELETE_TASK, TASK_STATUS, ACTUAL_TASK, UPDATE_TASK, CLEAN_TASK } from '../../types';
+import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK, DELETE_TASK, ACTUAL_TASK, UPDATE_TASK, CLEAN_TASK } from '../../types';
 
 
 
-export default (state, action) => {
+const TaskReducer = (state, action) => {
     switch(action.type){
         case  TASKS_PROJECT:
             return {
                 ...state,
-                taskProjects: state.tasks.filter(task => task.projectId === action.payload)
+                taskProjects: action.payload
             }
         case ADD_TASK:
             return {
                 ...state,
-                tasks: [action.payload, ...state.tasks], //creamos un nuevo arreglo de tareas con las nuevas
+                taskProjects: [action.payload, ...state.taskProjects], //creamos un nuevo arreglo de tareas con las nuevas
                 taskError: false
             }
          case  VALIDATE_TASK:
@@ -23,13 +23,12 @@ export default (state, action) => {
         case DELETE_TASK:
             return {
                 ...state,
-                tasks: state.tasks.filter(task => task.id !== action.payload)
+                taskProjects: state.taskProjects.filter(task => task._id !== action.payload)
             }
         case UPDATE_TASK:
-        case TASK_STATUS:
             return {
                 ...state,
-                tasks: state.tasks.map(task => task.id === action.payload.id ? action.payload :task)
+                taskProjects: state.taskProjects.map(task => task._id === action.payload._id ? action.payload :task)
             }
         case ACTUAL_TASK:
             return {
@@ -45,3 +44,5 @@ export default (state, action) => {
             return state;
     }
 }
+
+export default TaskReducer;
