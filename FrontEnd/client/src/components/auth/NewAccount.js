@@ -24,7 +24,7 @@ const NewAccount = (props) => {
             displayAndHideAlert(message.msg, message.category);
         }
 
-
+        //eslint-disable-next-line
     }, [message, authenticated, props.history]);
 
     //Definimos el state
