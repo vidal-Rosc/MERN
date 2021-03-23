@@ -14,7 +14,7 @@ const server = express();
 connectionDB();
 
 //Habilitamos cors
-server.use(cors());
+server.use(cors({ origin : 'https://frontend-mern.netlify.app/'}));
 
 //Habilitamos el express.JSON para leer los datos que el usuario escriba
 server.use(express.json({ extended: true }));
