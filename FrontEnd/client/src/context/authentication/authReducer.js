@@ -7,7 +7,8 @@ import {SUCCESFUL_REGISTRATION,
 
 
 
-export default (state, action) => {
+const AuthReducer = (state, action) => {
+    
     switch(action.type){
         case SUCCESFUL_REGISTRATION:
         case SUCCESFUL_LOGIN:
@@ -42,3 +43,4 @@ export default (state, action) => {
             return state;
     }
 }
+export default AuthReducer;
