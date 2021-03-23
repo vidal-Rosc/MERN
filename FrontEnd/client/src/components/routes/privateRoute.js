@@ -13,6 +13,7 @@ const PrivateRoute = ({ component: Component, ...props}) => {
     //Para que al recargar la app me traiga los datos de la sesion del usuario
     useEffect( () => {
         userAuthenticated();
+        //eslint-disable-next-line
     }, []);
 
 
