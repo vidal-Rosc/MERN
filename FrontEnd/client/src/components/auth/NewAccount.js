@@ -82,7 +82,7 @@ const NewAccount = (props) => {
         <div className="user-form">
             { alert ? ( <div className={`alert ${alert.category}`}>{alert.msg}</div>) : null }
             <div className="container-form dark-shadow">
-                <h1>*** New Member ***</h1>
+                <h1>*** New Account ***</h1>
 
                 <form
                     onSubmit={onSubmit}
