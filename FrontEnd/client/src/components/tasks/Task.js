@@ -12,13 +12,13 @@ const Task = ({task}) => {
 
     //Obtenemos la funcion para eliminar las tareas
     const tasksContext = useContext(TaskContext);
-    const { deleteTask, getTasks, taskStatus, actualTask } = tasksContext;
+    const { deleteTask, getTasks, editTask, actualTask } = tasksContext;
 
     const [actualProject] = project;
 
     //Al eliminar una tarea
     const delTask = id => {
-        deleteTask(id);
+        deleteTask(id, actualProject._id); //Pasamos el id al backend.
         getTasks(actualProject.id);
     }
 
@@ -26,7 +26,7 @@ const Task = ({task}) => {
     const changeTaskStatus = task => {
     
         task.status ? task.status= false : task.status = true;   //** if(task.status){
-        taskStatus(task)                                         //     task.status= false;
+        editTask(task)                                         //     task.status= false;
     }                                                            //** }else{
     // ********************************************************  //     task.status= true; 
 
@@ -70,7 +70,7 @@ const Task = ({task}) => {
                 <button
                     type="button"
                     className="btn btn-secondary"
-                    onClick={() => delTask(task.id)}
+                    onClick={() => delTask(task._id)}
                 >Delete</button>
 
             </div>
