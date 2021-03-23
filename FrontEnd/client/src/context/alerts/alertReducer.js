@@ -2,7 +2,7 @@ import {DISPLAY_ALERT, HIDE_ALERT} from '../../types/';
 
 
 
-export default (state, action) => {
+const AlertReducer = (state, action) => {
     switch(action.type){
 
         case DISPLAY_ALERT:
@@ -18,3 +18,4 @@ export default (state, action) => {
             return state;
     }
 }
+export default AlertReducer;
