@@ -5,7 +5,7 @@ import ProjectList from '../projects/ProjectList';
 const Sidebar = () => {
     return ( 
         <aside>
-            <h1>MERN <span>Tasks</span></h1>
+            <h1>PROJECT <span>Tasks</span></h1>
 
             <NewProject />
 
