@@ -50,7 +50,7 @@ const TaskList = () => {
             </ul>
             <button
                 type="button"
-                className="btn btn-delete"
+                className="btn btn-primary btn-delete"
                 onClick={deleteProjectxId}
             >Delete Project &times;</button>
         </Fragment>
