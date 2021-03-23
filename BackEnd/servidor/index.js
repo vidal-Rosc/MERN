@@ -20,7 +20,7 @@ server.use(cors({ origin : 'https://frontend-mern.netlify.app/'}));
 server.use(express.json({ extended: true }));
 
 //Asignamos un puerto
-const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 
 //Importamos las rutas
 server.use('/api/users', require('./routes/users'));
@@ -38,5 +38,5 @@ server.get('/', (req, res) => {
 
 //Encendemos el Servidor
 server.listen(port, '0.0.0.0', () => {
-    console.log(`Server starting in port ${PORT}`);
+    console.log(`Server starting in port ${port}`);
 });
