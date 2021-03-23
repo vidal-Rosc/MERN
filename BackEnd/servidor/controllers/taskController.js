@@ -45,7 +45,7 @@ exports.createTask = async ( req, res ) => {
 exports.getTasks = async ( req, res ) => {
     try {
         //Extraemos el proyecto y comprobamos si existe
-        const { project } = req.body;
+        const { project } = req.query;
 
         const existingProject = await Project.findById(project);
         if(!existingProject){
@@ -58,7 +58,7 @@ exports.getTasks = async ( req, res ) => {
          }
 
        //Obtenemos las tareas por proyecto
-       const tasks = await Task.find({ project });
+       const tasks = await Task.find({ project }).sort({ createdAt: -1 });
        res.json({ tasks })
         
     } catch (error) {
@@ -90,8 +90,8 @@ exports.updateTask = async ( req, res) => {
     
         //Creamos un objeto con la informacion captada.
         const updatedTask = {};
-        if(name)  updatedTask.name = name;
-        if(status) updatedTask.status = status;
+        updatedTask.name = name;
+        updatedTask.status = status;
 
         //Guardamos la tarea
         task = await Task.findOneAndUpdate({ _id: req.params.id }, updatedTask, { new: true})
@@ -106,7 +106,7 @@ exports.updateTask = async ( req, res) => {
 exports.deleteTask = async ( req, res ) => {
     try {
         //Extraemos el proyecto 
-        const { project } = req.body;
+        const { project } = req.query; //No usamos req.body porque pasamos params
 
         //Comprobamos  si existe la tarea
         let task = await Task.findById(req.params.id);
