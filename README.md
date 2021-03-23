@@ -2,6 +2,10 @@
 
 MERN utiliza JavaScript como único lenguaje Y emplea interesantes tecnologías, las cuales son mongoDB, Express, React y Node.js. La ventaja que encontramos al utilizar este stack en específico, es que nos permite profundizar en un solo lenguaje de programación, JavaScript.
 
+He decidido  realizar una  small-app tanto con su backend como con su frontend en Javascript,
+que pueda ayudar a organizar las tareas diarias de determinados proyectos.
+
+
 # MongoDB
 
 MongoDB es una base de datos noSQL, es decir no relacional, un tipo de base datos que se ha ganado cierta popularidad últimamente y a decir verdad tiene sus ventajas. Realmente se podría utilizar cualquier otra tecnología para la creación de nuestra base de datos, pero como ya mencionamos antes, en esta ocasión se utiliza mongoDB por manejar como lenguaje de consulta a JavaScript.
